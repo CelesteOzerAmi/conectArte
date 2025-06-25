@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\tareaslunes0906.props" />
+</Project>
