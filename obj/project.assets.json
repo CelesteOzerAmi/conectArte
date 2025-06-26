@@ -3468,11 +3468,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\celes\\source\\repos\\tareaslunes0906\\tareaslunes0906\\conectArte.csproj",
+      "projectUniqueName": "C:\\Users\\celes\\source\\repos\\conectarte\\conectarte\\conectArte.csproj",
       "projectName": "conectArte",
-      "projectPath": "C:\\Users\\celes\\source\\repos\\tareaslunes0906\\tareaslunes0906\\conectArte.csproj",
+      "projectPath": "C:\\Users\\celes\\source\\repos\\conectarte\\conectarte\\conectArte.csproj",
       "packagesPath": "C:\\Users\\celes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\celes\\source\\repos\\tareaslunes0906\\tareaslunes0906\\obj\\",
+      "outputPath": "C:\\Users\\celes\\source\\repos\\conectarte\\conectarte\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

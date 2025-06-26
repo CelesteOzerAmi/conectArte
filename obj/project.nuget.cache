@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+UvtnfiRaWs=",
+  "dgSpecHash": "zZRdrKtk1nw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\celes\\source\\repos\\tareaslunes0906\\tareaslunes0906\\conectArte.csproj",
+  "projectFilePath": "C:\\Users\\celes\\source\\repos\\conectarte\\conectarte\\conectArte.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\celes\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\celes\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
