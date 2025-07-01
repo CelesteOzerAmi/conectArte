@@ -1,0 +1,31 @@
+﻿@model CenterViewModel
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Agregar centro</h1>
+    <form asp-action="AddCenter" controller="Center" method="post">
+
+        <div class="form-group">
+            <label for="Name">Nombre:</label>
+            <input type="text" asp-for="Center.Name" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="City">Ciudad:</label>
+            <input type="text" asp-for="Center.City" class="form-control" id="city" name="city">
+        </div>
+        <div class="form-group">
+            <label for="Address">Dirección:</label>
+            <input type="text" asp-for="Center.Address" class="form-control" id="address" name="address">
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Teléfono:</label>
+            <input type="number" asp-for="Center.PhoneNumber" class="form-control" id="phoneNumber" name="phoneNumber">
+        </div>
+        <div>
+            <label for="Coordinator">Coordinador:</label>
+            <select id="Coordinator" name="coordinator" asp-for="Center.Coordinator.Id" class="form-control" asp-items="@(new SelectList(Model.Coordinators, "Id", "Name"))">
+                <option value="value">Seleccione un coordinador</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar centro</button>
+    </form>
+
+</div>

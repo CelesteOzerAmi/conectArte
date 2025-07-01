@@ -1,0 +1,37 @@
+﻿@model List<Resource>
+
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Lista de recursos</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Cantidad disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resource in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => resource.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => resource.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => resource.Stock)
+                    </td>
+                    <td>
+                        <form controller="Resource" method="post">
+                            <input type="hidden" name="id" asp-for="@resource.Id" />
+                            <a asp-action="UpdateResource" class="btn btn-sm btn-primary" asp-route-ide="@resource.Id">Modificar</a>
+                            <input type="submit" value="Eliminar" asp-action="DeleteResource" class="btn btn-sm btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

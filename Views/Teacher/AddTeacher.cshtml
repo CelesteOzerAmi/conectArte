@@ -1,0 +1,25 @@
+﻿@model Teacher
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Agregar docente</h1>
+    <form asp-action="AddTeacher" controller="Teacher" method="post">
+
+        <div class="form-group">
+            <label for="Name">Nombre completo:</label>
+            <input type="text" asp-for="Name" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="Specialty">Especialidad:</label>
+            <input type="text" asp-for="Specialty" class="form-control" id="specialty" name="specialty">
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Teléfono:</label>
+            <input type="text" asp-for="PhoneNumber" class="form-control" id="phoneNumber" name="phoneNumber">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="text" asp-for="Email" class="form-control" id="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar docente</button>
+    </form>
+
+</div>
