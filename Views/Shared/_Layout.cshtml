@@ -17,33 +17,28 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Teacher" asp-action="AddTeacher">Agregar docente</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Teacher" asp-action="ListTeacher">Listar docentes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Coordinator" asp-action="AddCoordinator">Agregar coordinador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Center" asp-action="AddCenter">Agregar centro</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Center" asp-action="ListCenter">Listar centros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Resource" asp-action="AddResource">Agregar recurso</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-item text-dark" asp-area="" asp-controller="Resource" asp-action="ListResource">Listar recurso</a>
-                        </li>
-                    </ul>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex gap-3">
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Docentes</option>
+                        <option value="@Url.Action("AddTeacher", "Teacher")">Agregar docente</option>
+                        <option value="@Url.Action("ListTeacher", "Teacher")">Listar docentes</option>
+                    </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Coordinadores</option>
+                        <option value="@Url.Action("AddCoordinator", "Coordinator")">Alta coordinador</option>
+                        <option value="@Url.Action("ListCoordinator", "Coordinator")">Listar Coordinadores</option>
+                    </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Centros</option>
+                        <option value="@Url.Action("AddCenter", "Center")">Alta centro</option>
+                        <option value="@Url.Action("ListCenter", "Center")">Listar centros</option>
+                    </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Recursos</option>
+                        <option value="@Url.Action("AddResource", "Resource")">Alta recurso</option>
+                        <option value="@Url.Action("ListResource", "Resource")">Listar recursos</option>
+                    </select>
                 </div>
             </div>
         </nav>

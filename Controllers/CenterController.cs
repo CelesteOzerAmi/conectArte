@@ -15,42 +15,17 @@ namespace conectArte.Controllers
 
         public IActionResult AddCenter()
         {
-            var coordinators = _context.Coordinators.ToList();  
-
-            var viewModel = new CenterViewModel
-            {
-                Center = new Center(), 
-                Coordinators = coordinators
-            };
-
-            return View(viewModel);
+            List<Coordinator> coordinators = _context.Coordinators.ToList();
+            ViewData["Coordinators"] = coordinators;
+            return View();
         }
 
         [HttpPost]
-        public IActionResult AddCenter(CenterViewModel viewModel)
+        public IActionResult AddCenter(Center c)
         {
-            if (!ModelState.IsValid)
-            {
-                viewModel.Coordinators = _context.Coordinators.ToList();
-                return View(viewModel);
-            }
-
-            var selectedCoordinator = _context.Coordinators
-                .FirstOrDefault(c => c.Id == viewModel.Center.Coordinator.Id);
-
-            if (selectedCoordinator == null)
-            {
-                ModelState.AddModelError("Center.Coordinator.Id", "Coordinador inválido.");
-                viewModel.Coordinators = _context.Coordinators.ToList();
-                return View(viewModel);
-            }
-
-            viewModel.Center.Coordinator = selectedCoordinator;
-
-            _context.Centers.Add(viewModel.Center);
+            _context.Centers.Add(c);
             _context.SaveChanges();
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult ListCenter()

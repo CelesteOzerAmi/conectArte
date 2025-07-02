@@ -1,32 +1,41 @@
-﻿@model List<Tarea>
+﻿@model List<Center>
 
 <div class="text-center">
-    <h1 class="display-4" style="font-size: 40px">Lista de Tareas</h1>
+    <h1 class="display-4" style="font-size: 40px">Lista de centros</h1>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Titulo</th>
-                <th>Contenido</th>
-
-                <th>Opciones</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Coordinador</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var tarea in Model)
+            @foreach (var center in Model)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => tarea.Id)
+                        @Html.DisplayFor(modelItem => center.Id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => tarea.Titulo)
+                        @Html.DisplayFor(modelItem => center.Name)
                     </td>
                     <td>
-                        <form controller="Tarea" method="post">
-                            <input type="hidden" name="id" asp-for="@tarea.Id" />
-                            <a asp-action="UpdateTarea" class="btn btn-sm btn-primary" asp-route-ide="@tarea.Id">Modificar</a>
-                            <input type="submit" value="Eliminar" asp-action="DeleteTarea" class="btn btn-sm btn-danger" />
+                        @Html.DisplayFor(modelItem => center.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => center.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => center.Coordinator.Name)
+                    </td>
+                    <td>
+                        <form controller="Center" method="post">
+                            <input type="hidden" name="id" asp-for="@center.Id" />
+                            <a asp-action="UpdateCenter" class="btn btn-sm btn-primary" asp-route-ide="@center.Id">Modificar</a>
+                            <input type="submit" value="Eliminar" asp-action="DeleteCenter" class="btn btn-sm btn-danger" />
                         </form>
                     </td>
                 </tr>

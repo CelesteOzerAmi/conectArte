@@ -1,17 +1,25 @@
-﻿@model Tarea
+﻿@model Center
 
 <div class="text-center">
-    <h1 class="display-4" style="font-size: 40px">Modificar Tarea</h1>
-    <form asp-action="UpdateTarea" controller="Tarea" method="post">
+    <h1 class="display-4" style="font-size: 40px">Modificar centro</h1>
+    <form asp-action="UpdateCenter" controller="Center" method="post">
         <div class="form-group">
             <label for="nombre">Id:</label>
             <input type="text" value="@Model.Id" asp-for="Id" class="form-control" id="id" name="id" readonly>
         </div>
         <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" value="@Model.Titulo" asp-for="Titulo" class="form-control" id="titulo" name="titulo">
+            <label for="Name">Nombre:</label>
+            <input type="text" value="@Model.Name" asp-for="Name" class="form-control" id="Name" name="Name">
         </div>
-        <button type="submit" class="btn btn-primary">Modificar tarea</button>
+        <div class="form-group">
+            <label for="Address">Dirección:</label>
+            <input type="text" value="@Model.Address" asp-for="Address" class="form-control" id="Address" name="Address">
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Teléfono:</label>
+            <input type="text" value="@Model.PhoneNumber" asp-for="PhoneNumber" class="form-control" id="PhoneNumber" name="PhoneNumber">
+        </div>
+        <button type="submit" class="btn btn-primary">Modificar centro</button>
     </form>
 
 </div>

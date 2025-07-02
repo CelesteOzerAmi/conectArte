@@ -11,6 +11,15 @@ namespace conectArte.Datos
 		}
 
 		public DbSet<Tarea> Tareas { get; set; }
-	}
+
+		public DbSet<Teacher> Teachers { get; set; }
+
+		public DbSet<Coordinator> Coordinators { get; set; }
+
+		public DbSet<Center> Centers { get; set; }
+
+        public DbSet<Resource> Resources { get; set; }
+
+    }
 }
 
