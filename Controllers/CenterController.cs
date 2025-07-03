@@ -1,6 +1,7 @@
 ﻿using conectArte.Datos;
 using conectArte.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace conectArte.Controllers
 {
@@ -30,7 +31,9 @@ namespace conectArte.Controllers
 
         public IActionResult ListCenter()
         {
-            List<Center> centers = _context.Centers.ToList();
+            List<Center> centers = _context.Centers
+                .Include(t => t.Coordinator)
+                .ToList();
             return View(centers);
         }
 
@@ -45,6 +48,8 @@ namespace conectArte.Controllers
         public IActionResult UpdateCenter(int id)
         {
             Center t = _context.Centers.Find(id);
+            List<Coordinator> coordinators = _context.Coordinators.ToList();
+            ViewData["Coordinators"] = coordinators;    
             return View(t);
         }
 
