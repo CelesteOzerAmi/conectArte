@@ -19,6 +19,18 @@
             <label for="PhoneNumber">Teléfono:</label>
             <input type="text" value="@Model.PhoneNumber" asp-for="PhoneNumber" class="form-control" id="PhoneNumber" name="PhoneNumber">
         </div>
+        <div>
+            <label for="CoordinatorId">Coordinador:</label>
+            <select id="CoordinatorId" name="CoordinatorId" asp-for="CoordinatorId" class="form-control">
+                <option value="">Seleccione un coordinador</option>
+                @foreach (var coor in ViewData["Coordinators"] as List<Coordinator>)
+                {
+                    <option value="@coor.Id">
+                        @coor.Name
+                    </option>
+                }
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Modificar centro</button>
     </form>
 

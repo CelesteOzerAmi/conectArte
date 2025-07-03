@@ -20,6 +20,24 @@ namespace conectArte.Datos
 
         public DbSet<Resource> Resources { get; set; }
 
+		public DbSet<Room> Rooms { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ResourceRoom>()
+                .HasKey(pt => new { pt.ResourceId, pt.RoomName });
+
+            modelBuilder.Entity<ResourceRoom>()
+                .HasOne(pt => pt.AssignedResource)
+                .WithMany(p => p.ResourcesRooms)
+                .HasForeignKey(pt => pt.ResourceId);
+
+            modelBuilder.Entity<ResourceRoom>()
+                .HasOne(pt => pt.AssignedRoom)
+                .WithMany(t => t.ResourcesRooms)
+                .HasForeignKey(pt => pt.RoomName);
+        }
+
     }
 }
 

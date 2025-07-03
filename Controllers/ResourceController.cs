@@ -19,37 +19,37 @@ namespace conectArte.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddResource(Resource t)
+        public IActionResult AddResource(Resource r)
         {
-            _context.Resources.Add(t);
+            _context.Resources.Add(r);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult ListResource()
         {
-            List<Resource> coordinators = _context.Resources.ToList();
-            return View(coordinators);
+            List<Resource> resources = _context.Resources.ToList();
+            return View(resources);
         }
 
         public IActionResult DeleteResource(int id)
         {
-            Resource t = _context.Resources.Find(id);
-            _context.Resources.Remove(t);
+            Resource r = _context.Resources.Find(id);
+            _context.Resources.Remove(r);
             _context.SaveChanges();
             return RedirectToAction("ListResource");
         }
 
         public IActionResult UpdateResource(int id)
         {
-            Resource t = _context.Resources.Find(id);
-            return View(t);
+            Resource r = _context.Resources.Find(id);
+            return View(r);
         }
 
         [HttpPost]
-        public IActionResult UpdateResource(Resource t)
+        public IActionResult UpdateResource(Resource r)
         {
-            _context.Resources.Update(t);
+            _context.Resources.Update(r);
             _context.SaveChanges();
             return RedirectToAction("ListResource");
         }

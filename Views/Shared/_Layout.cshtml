@@ -35,6 +35,11 @@
                         <option value="@Url.Action("ListCenter", "Center")">Listar centros</option>
                     </select>
                     <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Salas</option>
+                        <option value="@Url.Action("AddRoom", "Room")">Alta sala</option>
+                        <option value="@Url.Action("ListRoom", "Room")">Listar salas</option>
+                    </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
                         <option selected disabled>Recursos</option>
                         <option value="@Url.Action("AddResource", "Resource")">Alta recurso</option>
                         <option value="@Url.Action("ListResource", "Resource")">Listar recursos</option>

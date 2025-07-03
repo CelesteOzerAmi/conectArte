@@ -1,0 +1,37 @@
+﻿@model List<Room>
+
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Lista de salas</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Identificador</th>
+                <th>Capacidad máxima</th>
+                <th>Centro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => room.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => room.Capacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => room.Center.Name)
+                    </td>
+                    <td>
+                        <form controller="Room" method="post">
+                            <input type="hidden" name="id" asp-for="@room.Name" />
+                            <a asp-action="UpdateRoom" class="btn btn-sm btn-primary" asp-route-ide="@room.Name">Modificar</a>
+                            <input type="submit" value="Eliminar" asp-action="DeleteRoom" class="btn btn-sm btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
