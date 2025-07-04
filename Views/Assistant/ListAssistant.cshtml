@@ -1,0 +1,31 @@
+@model IEnumerable<conectArte.Models.Assistant>
+@{
+    ViewData["Title"] = "List Assistants";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Type</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Center</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var a in Model) {
+            <tr>
+                <td>@a.FullName</td>
+                <td>@a.Type</td>
+                <td>@a.Email</td>
+                <td>@a.Phone</td>
+                <td>@a.Center?.Name</td>
+                <td>
+                    <a asp-action="UpdateAssistant" asp-route-id="@a.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="DeleteAssistant" asp-route-id="@a.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

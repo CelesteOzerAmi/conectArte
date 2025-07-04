@@ -1,0 +1,41 @@
+@model conectArte.Models.Workshop
+@{
+    ViewData["Title"] = "Update Workshop";
+    var teachers = ViewData["Teachers"] as List<conectArte.Models.Teacher>;
+    var rooms = ViewData["Rooms"] as List<conectArte.Models.Room>;
+}
+<h2>Modificar Taller</h2>
+<form asp-action="UpdateWorkshop" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Type</label>
+        <input asp-for="Type" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Max Capacity</label>
+        <input asp-for="MaxCapacity" class="form-control" type="number" />
+    </div>
+    <div class="mb-3">
+        <label>Teacher</label>
+        <select asp-for="TeacherId" class="form-control">
+            <option value="">Select...</option>
+            @foreach(var t in teachers) {
+                <option value="@t.Id">@t.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Room</label>
+        <select asp-for="RoomName" class="form-control">
+            <option value="">Select...</option>
+            @foreach(var r in rooms) {
+                <option value="@r.Name">@r.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form> 

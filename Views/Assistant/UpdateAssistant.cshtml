@@ -1,0 +1,40 @@
+@model conectArte.Models.Assistant
+@{
+    ViewData["Title"] = "Update Assistant";
+    var centers = ViewData["Centers"] as List<conectArte.Models.Center>;
+}
+<h2>Modificar Asistente</h2>
+<form asp-action="UpdateAssistant" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label>Full Name</label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Type</label>
+        <select asp-for="Type" class="form-control">
+            <option value="">Select...</option>
+            <option value="child">Child</option>
+            <option value="teen">Teen</option>
+            <option value="adult">Adult</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Center</label>
+        <select asp-for="CenterId" class="form-control">
+            <option value="">Select...</option>
+            @foreach(var c in centers) {
+                <option value="@c.Id">@c.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form> 

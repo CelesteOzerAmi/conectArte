@@ -22,6 +22,10 @@ namespace conectArte.Datos
 
 		public DbSet<Room> Rooms { get; set; }
 
+        public DbSet<Workshop> Workshops { get; set; }
+        public DbSet<WorkshopAssistant> WorkshopAssistants { get; set; }
+        public DbSet<Assistant> Assistants { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ResourceRoom>()
@@ -36,6 +40,21 @@ namespace conectArte.Datos
                 .HasOne(pt => pt.AssignedRoom)
                 .WithMany(t => t.ResourcesRooms)
                 .HasForeignKey(pt => pt.RoomName);
+
+            modelBuilder.Entity<WorkshopAssistant>()
+                .HasKey(wa => new { wa.WorkshopId, wa.AssistantId });
+
+            modelBuilder.Entity<WorkshopAssistant>()
+                .HasOne(wa => wa.Workshop)
+                .WithMany(w => w.WorkshopAssistants)
+                .HasForeignKey(wa => wa.WorkshopId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<WorkshopAssistant>()
+                .HasOne(wa => wa.Assistant)
+                .WithMany()
+                .HasForeignKey(wa => wa.AssistantId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
     }

@@ -1,0 +1,38 @@
+@model conectArte.Models.Assistant
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px; text-align: center;">Agregar asistente</h1>
+    <form asp-action="AddAssistant" method="post">
+        <div class="form-group text-center">
+            <label for="FullName" class="w-100 text-center">Nombre completo:</label>
+            <input asp-for="FullName" class="form-control" id="FullName" name="FullName" />
+        </div>
+        <div class="form-group text-center">
+            <label for="Type" class="w-100 text-center">Tipo:</label>
+            <select asp-for="Type" class="form-control" id="Type" name="Type">
+                <option value="">Seleccione un tipo</option>
+                <option value="child">Niño</option>
+                <option value="teen">Adolescente</option>
+                <option value="adult">Adulto</option>
+            </select>
+        </div>
+        <div class="form-group text-center">
+            <label for="Email" class="w-100 text-center">Correo electrónico:</label>
+            <input asp-for="Email" class="form-control" id="Email" name="Email" />
+        </div>
+        <div class="form-group text-center">
+            <label for="Phone" class="w-100 text-center">Teléfono:</label>
+            <input asp-for="Phone" class="form-control" id="Phone" name="Phone" />
+        </div>
+        <div class="form-group text-center">
+            <label for="CenterId" class="w-100 text-center">Centro:</label>
+            <select asp-for="CenterId" class="form-control" id="CenterId" name="CenterId">
+                <option value="">Seleccione un centro</option>
+                @foreach(var c in ViewData["Centers"] as List<conectArte.Models.Center>) {
+                    <option value="@c.Id">@c.Name</option>
+                }
+            </select>
+        </div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Agregar asistente</button>
+        </div>
+    </form> 

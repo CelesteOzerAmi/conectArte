@@ -44,6 +44,16 @@
                         <option value="@Url.Action("AddResource", "Resource")">Alta recurso</option>
                         <option value="@Url.Action("ListResource", "Resource")">Listar recursos</option>
                     </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Talleres</option>
+                        <option value="@Url.Action("AddWorkshop", "Workshop")">Alta Taller</option>
+                        <option value="@Url.Action("ListWorkshop", "Workshop")">Listar Talleres</option>
+                    </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Asistentes</option>
+                        <option value="@Url.Action("AddAssistant", "Assistant")">Alta Asistente</option>
+                        <option value="@Url.Action("ListAssistant", "Assistant")">Listar Asistentes</option>
+                    </select>
                 </div>
             </div>
         </nav>
