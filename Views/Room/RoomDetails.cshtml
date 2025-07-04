@@ -1,0 +1,43 @@
+﻿@model Room
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center">Detalles de la sala</h1>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Identificador:</h5>
+            <p class="card-text">@Model.Name</p>
+
+            <h5 class="card-title">Capacidad máxima:</h5>
+            <p class="card-text">@Model.Capacity</p>
+
+            <h5 class="card-title">Centro:</h5>
+            <p class="card-text">@Model.Center.Name</p>
+
+            <h5 class="card-title">Recursos asignados:</h5>
+            
+            @if (Model.ResourcesRooms != null && Model.ResourcesRooms.Count > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var resroom in Model.ResourcesRooms)
+                    {
+                        <li class="list-group-item">
+                            @resroom.AssignedResource.Name
+                            <form asp-action="DeleteAssignedResource" method="post" class="m-0">
+                                <input type="hidden" name="roomName" value="@Model.Name" />
+                                <input type="hidden" name="id" value="@resroom.AssignedResource.Id" />
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">No hay recursos asignados.</p>
+            }
+        </div>
+    </div>
+
+    <a href="@Url.Action("ListRoom", "Room")" class="btn btn-secondary mt-4">Volver al listado</a>
+</div>

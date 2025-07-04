@@ -23,6 +23,18 @@
                 }
             </select>
         </div>
+        <div class="form-group">
+            <label for="ResourcesIds">Recursos asignados:</label>
+            <select name="ResourcesIds" class="form-control" multiple>
+                @foreach (var res in ViewData["Resources"] as List<Resource>)
+                {
+                    var isAssigned = Model.ResourcesRooms.Any(rr => rr.AssignedResource.Id == res.Id);
+                    <option value="@res.Id" selected="@(isAssigned)">
+                        @res.Name
+                    </option>
+                }
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Modificar sala</button>
     </form>
 

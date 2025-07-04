@@ -34,7 +34,8 @@
                     <td>
                         <form controller="Center" method="post">
                             <input type="hidden" name="id" asp-for="@center.Id" />
-                            <a asp-action="UpdateCenter" class="btn btn-sm btn-primary" asp-route-ide="@center.Id">Modificar</a>
+                            <a asp-action="CenterDetails" class="btn btn-sm btn-primary" asp-route-Id="@center.Id">Ver</a>
+                            <a asp-action="UpdateCenter" class="btn btn-sm btn-primary" asp-route-Id="@center.Id">Modificar</a>
                             <input type="submit" value="Eliminar" asp-action="DeleteCenter" class="btn btn-sm btn-danger" />
                         </form>
                     </td>

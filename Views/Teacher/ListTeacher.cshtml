@@ -34,7 +34,7 @@
                     <td>
                         <form controller="Teacher" method="post">
                             <input type="hidden" name="id" asp-for="@teacher.Id" />
-                            <a asp-action="UpdateTeacher" class="btn btn-sm btn-primary" asp-route-ide="@teacher.Id">Modificar</a>
+                            <a asp-action="UpdateTeacher" class="btn btn-sm btn-primary" asp-route-Id="@teacher.Id">Modificar</a>
                             <input type="submit" value="Eliminar" asp-action="DeleteTeacher" class="btn btn-sm btn-danger" />
                         </form>
                     </td>

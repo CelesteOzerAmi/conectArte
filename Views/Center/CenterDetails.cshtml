@@ -1,0 +1,30 @@
+﻿@model Center
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center">Detalles del centro</h1>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Id:</h5>
+            <p class="card-text">@Model.Id</p>
+
+            <h5 class="card-title">Nombre:</h5>
+            <p class="card-text">@Model.Name</p>
+
+            <h5 class="card-title">Dirección:</h5>
+            <p class="card-text">@Model.Address</p>
+
+            <h5 class="card-title">Ciudad:</h5>
+            <p class="card-text">@Model.City</p>
+
+            <h5 class="card-title">Teléfono:</h5>
+            <p class="card-text">@Model.PhoneNumber</p>
+
+            <h5 class="card-title">Coordinador:</h5>
+            <p class="card-text">@Model.Coordinator.Name | @Model.Coordinator.PhoneNumber</p>
+
+        </div>
+    </div>
+
+    <a href="@Url.Action("ListCenter", "Center")" class="btn btn-secondary mt-4">Volver al listado</a>
+</div>

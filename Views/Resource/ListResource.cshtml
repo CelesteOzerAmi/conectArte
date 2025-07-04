@@ -26,7 +26,7 @@
                     <td>
                         <form controller="Resource" method="post">
                             <input type="hidden" name="id" asp-for="@resource.Id" />
-                            <a asp-action="UpdateResource" class="btn btn-sm btn-primary" asp-route-ide="@resource.Id">Modificar</a>
+                            <a asp-action="UpdateResource" class="btn btn-sm btn-primary" asp-route-Id="@resource.Id">Modificar</a>
                             <input type="submit" value="Eliminar" asp-action="DeleteResource" class="btn btn-sm btn-danger" />
                         </form>
                     </td>

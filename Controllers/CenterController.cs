@@ -44,6 +44,12 @@ namespace conectArte.Controllers
             _context.SaveChanges();
             return RedirectToAction("ListCenter");
         }
+        public IActionResult CenterDetails(int id)
+        {
+            Center c = _context.Centers.Include(c => c.Coordinator)
+                        .FirstOrDefault(c => c.Id == id);
+            return View(c);
+        }
 
         public IActionResult UpdateCenter(int id)
         {

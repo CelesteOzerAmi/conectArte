@@ -58,20 +58,61 @@ namespace conectArte.Controllers
             return RedirectToAction("ListRoom");
         }
 
-        public IActionResult UpdateRoom(int id)
+        public IActionResult RoomDetails(string name)
         {
-            Room r = _context.Rooms.Find(id);
+            Room r = _context.Rooms.Include(r => r.Center)
+                                    .Include(r => r.ResourcesRooms)
+                                    .ThenInclude(rr => rr.AssignedResource)
+                                    .FirstOrDefault(r => r.Name == name);
+            return View(r);
+        }
+
+        public IActionResult UpdateRoom(string name)
+        {
+            Room r = _context.Rooms.Include(r => r.ResourcesRooms)
+                            .FirstOrDefault(r => r.Name == name);
             List<Center> centers = _context.Centers.ToList();
             ViewData["Centers"] = centers;
+            List<Resource> resources = _context.Resources.ToList();
+            ViewData["Resources"] = resources;
             return View(r);
         }
 
         [HttpPost]
-        public IActionResult UpdateRoom(Room t)
+        public IActionResult UpdateRoom(Room r)
         {
-            _context.Rooms.Update(t);
+            _context.Rooms.Update(r);
             _context.SaveChanges();
+
+            List<ResourceRoom> previous = _context.Set<ResourceRoom>()
+                .Where(rr => rr.RoomName == r.Name)
+                .ToList();
+            _context.Set<ResourceRoom>().RemoveRange(previous);
+            _context.SaveChanges();
+
+            if(r.ResourcesIds != null)
+            {
+                foreach(int id in r.ResourcesIds)
+                {
+                    ResourceRoom rr = new ResourceRoom { ResourceId = id, RoomName = r.Name, ResourceCount = 1 };
+                    _context.Add(rr);
+                }
+                _context.SaveChanges();
+            }
             return RedirectToAction("ListRoom");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteAssignedResource(string roomName, int id)
+        {
+            ResourceRoom resroom = _context.Set<ResourceRoom>()
+                        .FirstOrDefault(rr => rr.RoomName == roomName && rr.ResourceId == id);
+            if(resroom != null)
+            {
+                _context.Set<ResourceRoom>().Remove(resroom);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("RoomDetails", new { name = roomName });
         }
     }
 }

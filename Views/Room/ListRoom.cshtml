@@ -26,7 +26,8 @@
                     <td>
                         <form controller="Room" method="post">
                             <input type="hidden" name="id" asp-for="@room.Name" />
-                            <a asp-action="UpdateRoom" class="btn btn-sm btn-primary" asp-route-ide="@room.Name">Modificar</a>
+                            <a asp-action="RoomDetails" class="btn btn-sm btn-primary" asp-route-Name="@room.Name">Ver</a>
+                            <a asp-action="UpdateRoom" class="btn btn-sm btn-primary" asp-route-Name="@room.Name">Modificar</a>
                             <input type="submit" value="Eliminar" asp-action="DeleteRoom" class="btn btn-sm btn-danger" />
                         </form>
                     </td>
