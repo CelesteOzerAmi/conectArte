@@ -54,6 +54,11 @@
                         <option value="@Url.Action("AddAssistant", "Assistant")">Alta Asistente</option>
                         <option value="@Url.Action("ListAssistant", "Assistant")">Listar Asistentes</option>
                     </select>
+                    <select style="width: 150px; border: none" class="form-select" onchange="location = this.value;">
+                        <option selected disabled>Filtros</option>
+                        <option value="@Url.Action("NoResourceWorkshopAssistants", "Filter")">Lista asistentes a talleres sin recursos</option>
+                        <option value="@Url.Action("AssistantsForWorkshopAttendance", "Filter")">Listar asistentes con más talleres realizados</option>
+                    </select>
                 </div>
             </div>
         </nav>

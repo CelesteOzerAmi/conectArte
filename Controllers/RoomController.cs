@@ -16,30 +16,46 @@ namespace conectArte.Controllers
 
         public IActionResult AddRoom()
         {
-            List<Center> centers = _context.Centers.ToList();
-            ViewData["Centers"] = centers;
-            List<Resource> resources = _context.Resources.ToList();
-            ViewData["Resources"] = resources;
+            ViewData["Centers"] = _context.Centers.ToList();
+            ViewData["Resources"] = _context.Resources.ToList();
             return View();
         }
 
         [HttpPost]
         public IActionResult AddRoom(Room r)
         {
-            _context.Rooms.Add(r);
-            _context.SaveChanges();
-            foreach(int i in r.ResourcesIds)
+            try
             {
-                ResourceRoom rr = new ResourceRoom
+                /*if (_context.Rooms.Any(ro => ro.Name == r.Name))
                 {
-                    ResourceId = i,
-                    RoomName = r.Name,
-                    ResourceCount = 1
-                };
-                _context.Add(rr);
+                    ModelState.AddModelError("Name", "El identificador ya existe");
+                    return View(r);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(r);
+                }*/
+                _context.Rooms.Add(r);
+                _context.SaveChanges();
+                foreach (int i in r.ResourcesIds)
+                {
+                    ResourceRoom rr = new ResourceRoom
+                    {
+                        ResourceId = i,
+                        RoomName = r.Name,
+                        ResourceCount = 1
+                    };
+                    _context.Add(rr);
+                }
+                _context.SaveChanges();
+                return RedirectToAction("ListRoom");
             }
-            _context.SaveChanges();
-            return RedirectToAction("ListRoom");
+            catch (Exception ex)
+            {
+                ModelState.AddModelError ("", "Error interno del sistema");
+                return View(r);
+            }
         }
 
         public IActionResult ListRoom()

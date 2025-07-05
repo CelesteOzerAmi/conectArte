@@ -1,7 +1,5 @@
-@model IEnumerable<conectArte.Models.Assistant>
-@{
-    ViewData["Title"] = "List Assistants";
-}
+ï»¿@model IEnumerable<conectArte.Models.Assistant>
+
 <div class="text-center">
     <h1 class="display-4" style="font-size: 40px">Lista de asistentes</h1>
     <table class="table">
@@ -10,9 +8,8 @@
                 <th>Nombre completo</th>
                 <th>Tipo</th>
                 <th>Email</th>
-                <th>Teléfono</th>
+                <th>TelÃ©fono</th>
                 <th>Centro</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +20,7 @@
                     @switch (a.Type)
                     {
                         case "child":
-                            <td>Niño</td>
+                            <td>NiÃ±o</td>
                             break;
                         case "teen":
                             <td>Adolescente</td>
@@ -37,14 +34,10 @@
                     }
                     <td>@a.Email</td>
                     <td>@a.Phone</td>
-                    <td>@a.Center.Name</td>
-                    <td>
-                        <a asp-action="AssistantDetails" class="btn btn-sm btn-primary" asp-route-Id="@a.Id">Ver</a>
-                        <a asp-action="UpdateAssistant" asp-route-id="@a.Id" class="btn btn-warning btn-sm">Modificar</a>
-                        <a asp-action="DeleteAssistant" asp-route-id="@a.Id" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
+                    <td>@a.Center?.Name</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+

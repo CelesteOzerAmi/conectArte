@@ -21,6 +21,11 @@ namespace conectArte.Controllers
         [HttpPost]
         public IActionResult AddTeacher(Teacher t)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View(t);
+            }
             _context.Teachers.Add(t);
             _context.SaveChanges();
             return RedirectToAction("ListTeacher");

@@ -35,18 +35,20 @@ namespace conectArte.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAssistant(Assistant a, int WorkshopId, double Rating)
+        public IActionResult AddAssistant(Assistant a)
         {
             _context.Assistants.Add(a);
             _context.SaveChanges();
             // Crear el registro en WorkshopAssistant
-            WorkshopAssistant wa = new WorkshopAssistant
+            foreach(int i in a.WorkshopIds)
             {
-                AssistantId = a.Id,
-                WorkshopId = WorkshopId,
-                Rating = Rating
-            };
-            _context.WorkshopAssistants.Add(wa);
+                WorkshopAssistant wa = new WorkshopAssistant
+                {
+                    AssistantId = a.Id,
+                    WorkshopId = i
+                };
+                _context.WorkshopAssistants.Add(wa);
+            }
             _context.SaveChanges();
             return RedirectToAction("ListAssistant");
         }
@@ -60,6 +62,15 @@ namespace conectArte.Controllers
             return View(assistants);
         }
 
+        public IActionResult AssistantDetails(int id)
+        {
+            Assistant r = _context.Assistants.Include(r => r.Center)
+                                    .Include(r => r.WorkshopsAttended)
+                                    .ThenInclude(rr => rr.Workshop)
+                                    .FirstOrDefault(r => r.Id == id);
+            return View(r);
+        }
+
         public IActionResult DeleteAssistant(int id)
         {
             Assistant a = _context.Assistants.Find(id);
@@ -70,8 +81,11 @@ namespace conectArte.Controllers
 
         public IActionResult UpdateAssistant(int id)
         {
-            Assistant a = _context.Assistants.Find(id);
+            Assistant a = _context.Assistants
+                .Include(a => a.WorkshopsAttended)
+                .FirstOrDefault(a => a.Id == id);
             ViewData["Centers"] = _context.Centers.ToList();
+            ViewData["Workshops"] = _context.Workshops.ToList();
             return View(a);
         }
 
@@ -80,7 +94,36 @@ namespace conectArte.Controllers
         {
             _context.Assistants.Update(a);
             _context.SaveChanges();
+            List<WorkshopAssistant> previous = _context.Set<WorkshopAssistant>()
+                .Where(rr => rr.AssistantId == a.Id)
+                .ToList();
+            _context.Set<WorkshopAssistant>().RemoveRange(previous);
+            _context.SaveChanges();
+
+            if (a.WorkshopIds != null)
+            {
+                foreach (int id in a.WorkshopIds)
+                {
+                    WorkshopAssistant rr = new WorkshopAssistant { WorkshopId = id, AssistantId = a.Id};
+                    _context.Add(rr);
+                }
+                _context.SaveChanges();
+            }
             return RedirectToAction("ListAssistant");
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteAttendedWorkshop(int AssistantId, int WorkshopId)
+        {
+            WorkshopAssistant resroom = _context.Set<WorkshopAssistant>()
+                        .FirstOrDefault(rr => rr.AssistantId == AssistantId && rr.WorkshopId == WorkshopId);
+            if (resroom != null)
+            {
+                _context.Set<WorkshopAssistant>().Remove(resroom);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("AssistantDetails", new { id = AssistantId });
         }
     }
 } 

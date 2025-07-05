@@ -12,6 +12,6 @@ namespace conectArte.Models
         [ForeignKey("AssistantId")]
         public Assistant Assistant { get; set; }
 
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
     }
 } 

@@ -36,5 +36,17 @@
             }
         </select>
     </div>
+    <div class="form-group text-center">
+        <label for="WorkshopIds" class="w-100 text-center">Talleres realizados:</label>
+        <select class="form-control" id="WorkshopIds" name="WorkshopIds" multiple>
+            @foreach (var w in ViewData["Workshops"] as List<Workshop>)
+            {
+                var isAssigned = Model.WorkshopsAttended.Any(rr => rr.Workshop.Id == w.Id);
+                <option value="@w.Id" selected="@(isAssigned)">
+                    @w.Name
+                </option>
+            }
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Modificar</button>
 </form> 

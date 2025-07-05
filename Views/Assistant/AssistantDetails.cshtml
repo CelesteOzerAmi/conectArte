@@ -1,0 +1,61 @@
+﻿@model Assistant
+
+<div class="container mt-5">
+    <h1 class="display-4 text-center">Detalles del asistente</h1>
+
+    <div class="card mt-4">
+        <div class="card-body">
+
+            <h5 class="card-title">Nombre</h5>
+            <p class="card-text">@Model.FullName</p>
+
+            <h5 class="card-title">Centro</h5>
+            <p class="card-text">@Model.Center.Name</p>
+
+            <h5 class="card-title">Talleres realizados</h5>
+            
+            @if (Model.WorkshopsAttended != null && Model.WorkshopsAttended.Count > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var resroom in Model.WorkshopsAttended)
+                    {
+                        <li class="list-group-item">
+                            <p>
+                                @resroom.Workshop.Name
+                            </p>
+                            @if (@resroom.Rating != null)
+                            {
+                                <p>
+                                    @resroom.Rating
+                                </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    Sin calificación aun
+                                </p>
+                            }
+                            <form asp-action="AssignScore" method="post" class="m-0">
+                                <input type="hidden" name="AssistantId" value="@Model.Id" />
+                                <input type="hidden" name="WorkshopId" value="@resroom.Workshop.Id" />
+                                <input type="hidden" name="Score" value="@resroom.Rating" />
+                                <button type="submit" class="btn btn-sm btn-primary">Agregar calificación</button>
+                            </form>
+                            <form asp-action="DeleteAttendedWorkshop" method="post" class="m-0">
+                                <input type="hidden" name="AssistantId" value="@Model.Id" />
+                                <input type="hidden" name="WorkshopId" value="@resroom.Workshop.Id" />
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar recurso</button>
+                            </form>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">No hay recursos asignados.</p>
+            }
+        </div>
+    </div>
+
+    <a href="@Url.Action("ListAssistant", "Assistant")" class="btn btn-secondary mt-4">Volver al listado</a>
+</div>

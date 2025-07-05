@@ -21,6 +21,9 @@ namespace conectArte.Models
         // Workshops attended
         public List<WorkshopAssistant> WorkshopsAttended { get; set; }
 
+        [NotMapped]
+        public List<int> WorkshopIds { get; set; }
+
         public Assistant()
         {
             WorkshopsAttended = new List<WorkshopAssistant>();

@@ -36,17 +36,13 @@
             <input asp-for="Phone" class="form-control" id="Phone" name="Phone" />
         </div>
         <div class="form-group text-center">
-            <label for="WorkshopId" class="w-100 text-center">Taller:</label>
-            <select class="form-control" id="WorkshopId" name="WorkshopId">
+            <label for="WorkshopIds" class="w-100 text-center">Taller:</label>
+            <select class="form-control" id="WorkshopIds" name="WorkshopIds" multiple>
                 <option value="">Seleccione un taller</option>
-                @foreach(var w in ViewData["Workshops"] as List<conectArte.Models.Workshop>) {
+                @foreach(var w in ViewData["Workshops"] as List<Workshop>) {
                     <option value="@w.Id">@w.Name</option>
                 }
             </select>
-        </div>
-        <div class="form-group text-center">
-            <label for="Rating" class="w-100 text-center">Calificación:</label>
-            <input type="number" step="0.01" min="0" max="10" class="form-control" id="Rating" name="Rating" />
         </div>
         <div class="text-center mt-3">
             <button type="submit" class="btn btn-primary">Agregar asistente</button>
