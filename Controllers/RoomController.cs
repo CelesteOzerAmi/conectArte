@@ -114,5 +114,23 @@ namespace conectArte.Controllers
             }
             return RedirectToAction("RoomDetails", new { name = roomName });
         }
+
+        public IActionResult UpdateAssignedResourceCount(string roomName, int id,  int count)
+        {
+            /***     errores     ***/ 
+            ResourceRoom resroom = _context.Set<ResourceRoom>()
+                        .FirstOrDefault(rr => rr.RoomName == roomName && rr.ResourceId == id);
+
+            resroom.ResourceCount = count;
+            Console.WriteLine("res: " + resroom);
+
+            _context.Set<ResourceRoom>().Update(resroom);
+            Console.WriteLine("res: " + resroom);
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("RoomDetails", new { name = roomName });
+        }
     }
 }

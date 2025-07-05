@@ -8,34 +8,34 @@
 <form asp-action="UpdateWorkshop" method="post">
     <input type="hidden" asp-for="Id" />
     <div class="mb-3">
-        <label>Name</label>
+        <label>Nombre</label>
         <input asp-for="Name" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Type</label>
+        <label>Tipo</label>
         <input asp-for="Type" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Max Capacity</label>
+        <label>Capacidad máxima</label>
         <input asp-for="MaxCapacity" class="form-control" type="number" />
     </div>
     <div class="mb-3">
-        <label>Teacher</label>
+        <label>Docente</label>
         <select asp-for="TeacherId" class="form-control">
-            <option value="">Select...</option>
+            <option value="">Seleccione un docente...</option>
             @foreach(var t in teachers) {
                 <option value="@t.Id">@t.Name</option>
             }
         </select>
     </div>
     <div class="mb-3">
-        <label>Room</label>
+        <label>Sala</label>
         <select asp-for="RoomName" class="form-control">
-            <option value="">Select...</option>
+            <option value="">Seleccione una sala...</option>
             @foreach(var r in rooms) {
                 <option value="@r.Name">@r.Name</option>
             }
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
 </form> 

@@ -26,7 +26,7 @@ namespace conectArte.Controllers
         {
             _context.Centers.Add(c);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListCenter");
         }
 
         public IActionResult ListCenter()
@@ -44,6 +44,7 @@ namespace conectArte.Controllers
             _context.SaveChanges();
             return RedirectToAction("ListCenter");
         }
+
         public IActionResult CenterDetails(int id)
         {
             Center c = _context.Centers.Include(c => c.Coordinator)

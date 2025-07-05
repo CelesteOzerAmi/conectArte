@@ -23,13 +23,13 @@ namespace conectArte.Controllers
         {
             _context.Teachers.Add(t);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListTeacher");
         }
 
         public IActionResult ListTeacher()
         {
-            List<Teacher> tareas = _context.Teachers.ToList();
-            return View(tareas);
+            List<Teacher> t = _context.Teachers.ToList();
+            return View(t);
         }
 
         public IActionResult DeleteTeacher(int id)

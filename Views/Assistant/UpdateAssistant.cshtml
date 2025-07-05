@@ -7,16 +7,16 @@
 <form asp-action="UpdateAssistant" method="post">
     <input type="hidden" asp-for="Id" />
     <div class="mb-3">
-        <label>Full Name</label>
+        <label>Nombre</label>
         <input asp-for="FullName" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Type</label>
+        <label>Tipo</label>
         <select asp-for="Type" class="form-control">
-            <option value="">Select...</option>
-            <option value="child">Child</option>
-            <option value="teen">Teen</option>
-            <option value="adult">Adult</option>
+            <option value="">Seleccione un tipo...</option>
+            <option value="child">Niño</option>
+            <option value="teen">Adolescente</option>
+            <option value="adult">Adulto</option>
         </select>
     </div>
     <div class="mb-3">
@@ -24,17 +24,17 @@
         <input asp-for="Email" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Phone</label>
+        <label>Teléfono</label>
         <input asp-for="Phone" class="form-control" />
     </div>
     <div class="mb-3">
-        <label>Center</label>
+        <label>Centro</label>
         <select asp-for="CenterId" class="form-control">
-            <option value="">Select...</option>
+            <option value="">Seleccione un centro...</option>
             @foreach(var c in centers) {
                 <option value="@c.Id">@c.Name</option>
             }
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Modificar</button>
 </form> 

@@ -2,30 +2,48 @@
 @{
     ViewData["Title"] = "List Assistants";
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>Full Name</th>
-            <th>Type</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Center</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var a in Model) {
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Lista de asistentes</h1>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@a.FullName</td>
-                <td>@a.Type</td>
-                <td>@a.Email</td>
-                <td>@a.Phone</td>
-                <td>@a.Center?.Name</td>
-                <td>
-                    <a asp-action="UpdateAssistant" asp-route-id="@a.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="DeleteAssistant" asp-route-id="@a.Id" class="btn btn-danger btn-sm">Delete</a>
-                </td>
+                <th>Nombre completo</th>
+                <th>Tipo</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Centro</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <td>@a.FullName</td>
+                    @switch (a.Type)
+                    {
+                        case "child":
+                            <td>Niño</td>
+                            break;
+                        case "teen":
+                            <td>Adolescente</td>
+                            break;
+                        case "adult":
+                            <td>Adulto</td>
+                            break;
+                        default:
+                            <td></td>
+                            break;
+                    }
+                    <td>@a.Email</td>
+                    <td>@a.Phone</td>
+                    <td>@a.Center?.Name</td>
+                    <td>
+                        <a asp-action="UpdateAssistant" asp-route-id="@a.Id" class="btn btn-warning btn-sm">Modificar</a>
+                        <a asp-action="DeleteAssistant" asp-route-id="@a.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

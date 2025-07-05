@@ -1,0 +1,34 @@
+﻿@model List<Coordinator>
+
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Lista de coordinadores</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var coordinator in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => coordinator.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => coordinator.PhoneNumber)
+                    </td>
+                    <td>
+                        <form controller="Coordinator" method="post">
+                            <input type="hidden" name="id" asp-for="@coordinator.Id" />
+                            <a asp-action="UpdateCoordinator" class="btn btn-sm btn-primary" asp-route-Id="@coordinator.Id">Modificar</a>
+                            <input type="submit" value="Eliminar" asp-action="DeleteCoordinator" class="btn btn-sm btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

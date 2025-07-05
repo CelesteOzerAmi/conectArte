@@ -5,16 +5,16 @@
 
     <div class="card mt-4">
         <div class="card-body">
-            <h5 class="card-title">Identificador:</h5>
+            <h5 class="card-title">Identificador</h5>
             <p class="card-text">@Model.Name</p>
 
-            <h5 class="card-title">Capacidad máxima:</h5>
+            <h5 class="card-title">Capacidad máxima</h5>
             <p class="card-text">@Model.Capacity</p>
 
-            <h5 class="card-title">Centro:</h5>
+            <h5 class="card-title">Centro</h5>
             <p class="card-text">@Model.Center.Name</p>
 
-            <h5 class="card-title">Recursos asignados:</h5>
+            <h5 class="card-title">Recursos asignados</h5>
             
             @if (Model.ResourcesRooms != null && Model.ResourcesRooms.Count > 0)
             {
@@ -22,11 +22,23 @@
                     @foreach (var resroom in Model.ResourcesRooms)
                     {
                         <li class="list-group-item">
-                            @resroom.AssignedResource.Name
+                            <p>
+                                @resroom.AssignedResource.Name 
+                            </p>
+                            <div class="align-items-center">
+                                <label for="ResourceCount">Cantidad</label>
+                                <input class="p-50" type="number" name="ResourceCount" value="" />
+                            </div>
+                            <form asp-action="UpdateAssignedResourceCount" method="post" class="m-0">
+                                <input type="hidden" name="roomName" value="@Model.Name" />
+                                <input type="hidden" name="id" value="@resroom.AssignedResource.Id" />
+                                <input type="hidden" name="count" value="@resroom.ResourceCount" />
+                                <button type="submit" class="btn btn-sm btn-primary">Actualizar cantidad</button>
+                            </form>
                             <form asp-action="DeleteAssignedResource" method="post" class="m-0">
                                 <input type="hidden" name="roomName" value="@Model.Name" />
                                 <input type="hidden" name="id" value="@resroom.AssignedResource.Id" />
-                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar recurso</button>
                             </form>
                         </li>
                     }

@@ -2,30 +2,34 @@
 @{
     ViewData["Title"] = "List Workshops";
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Max Capacity</th>
-            <th>Teacher</th>
-            <th>Room</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var w in Model) {
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Lista de talleres</h1>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@w.Name</td>
-                <td>@w.Type</td>
-                <td>@w.MaxCapacity</td>
-                <td>@w.Teacher?.Name</td>
-                <td>@w.Room?.Name</td>
-                <td>
-                    <a asp-action="UpdateWorkshop" asp-route-id="@w.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a asp-action="DeleteWorkshop" asp-route-id="@w.Id" class="btn btn-danger btn-sm">Delete</a>
-                </td>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Capacidad máxima</th>
+                <th>Docente</th>
+                <th>Sala</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>@w.Name</td>
+                    <td>@w.Type</td>
+                    <td>@w.MaxCapacity</td>
+                    <td>@w.Teacher?.Name</td>
+                    <td>@w.Room?.Name</td>
+                    <td>
+                        <a asp-action="UpdateWorkshop" asp-route-id="@w.Id" class="btn btn-warning btn-sm">Modificar</a>
+                        <a asp-action="DeleteWorkshop" asp-route-id="@w.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

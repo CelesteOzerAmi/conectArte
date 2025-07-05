@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using conectArte.Datos;
 using conectArte.Models;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace conectArte.Controllers
 {
@@ -31,7 +32,10 @@ namespace conectArte.Controllers
 
         public IActionResult ListWorkshop()
         {
-            List<Workshop> workshops = _context.Workshops.ToList();
+            List<Workshop> workshops = _context.Workshops
+                .Include(w => w.Teacher)
+                .Include(w => w.Room)
+                .ToList();
             return View(workshops);
         }
 

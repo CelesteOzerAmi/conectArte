@@ -5,18 +5,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nombre</th>
                 <th>Cantidad disponible</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var resource in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => resource.Id)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => resource.Name)
                     </td>

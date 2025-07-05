@@ -5,11 +5,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nombre</th>
-                <th>Dirección</th>
+                <th>Ciudad</th>
                 <th>Teléfono</th>
                 <th>Coordinador</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -17,13 +17,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => center.Id)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => center.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => center.Address)
+                        @Html.DisplayFor(modelItem => center.City)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => center.PhoneNumber)

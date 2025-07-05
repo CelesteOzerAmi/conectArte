@@ -19,9 +19,9 @@ namespace conectArte.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCoordinator(Coordinator t)
+        public IActionResult AddCoordinator(Coordinator c)
         {
-            _context.Coordinators.Add(t);
+            _context.Coordinators.Add(c);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
@@ -34,22 +34,22 @@ namespace conectArte.Controllers
 
         public IActionResult DeleteCoordinator(int id)
         {
-            Coordinator t = _context.Coordinators.Find(id);
-            _context.Coordinators.Remove(t);
+            Coordinator c = _context.Coordinators.Find(id);
+            _context.Coordinators.Remove(c);
             _context.SaveChanges();
             return RedirectToAction("ListCoordinator");
         }
 
         public IActionResult UpdateCoordinator(int id)
         {
-            Coordinator t = _context.Coordinators.Find(id);
-            return View(t);
+            Coordinator c = _context.Coordinators.Find(id);
+            return View(c);
         }
 
         [HttpPost]
-        public IActionResult UpdateCoordinator(Coordinator t)
+        public IActionResult UpdateCoordinator(Coordinator c)
         {
-            _context.Coordinators.Update(t);
+            _context.Coordinators.Update(c);
             _context.SaveChanges();
             return RedirectToAction("ListCoordinator");
         }

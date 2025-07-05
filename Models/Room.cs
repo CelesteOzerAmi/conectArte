@@ -20,7 +20,7 @@ namespace conectArte.Models
 
         public Room()
         {
-
+            ResourcesRooms = new List<ResourceRoom>();
         }
 
     }

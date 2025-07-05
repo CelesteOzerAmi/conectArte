@@ -3,6 +3,7 @@ using conectArte.Datos;
 using conectArte.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace conectArte.Controllers
 {
@@ -52,7 +53,10 @@ namespace conectArte.Controllers
 
         public IActionResult ListAssistant()
         {
-            List<Assistant> assistants = _context.Assistants.ToList();
+            List<Assistant> assistants = _context.Assistants
+                .Include(a => a.Center)
+                .ToList();
+            ;
             return View(assistants);
         }
 
