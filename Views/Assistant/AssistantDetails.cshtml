@@ -19,23 +19,23 @@
                 <ul class="list-group">
                     @foreach (var resroom in Model.WorkshopsAttended)
                     {
-                        <li class="list-group-item">
-                            <p>
+                        <li class="list-group-item d-flex gap-5">
+                            <p class="w-25">
                                 @resroom.Workshop.Name
                             </p>
                             @if (@resroom.Rating != null)
                             {
-                                <p>
+                                <p class="w-25 text-center">
                                     @resroom.Rating
                                 </p>
                             }
                             else
                             {
-                                <p>
+                                <p class="w-25">
                                     Sin calificación aun
                                 </p>
                             }
-                            <form asp-action="AssignScore" method="post" class="m-0">
+                            <form asp-action="AssignScore" method="get" class="m-0">
                                 <input type="hidden" name="AssistantId" value="@Model.Id" />
                                 <input type="hidden" name="WorkshopId" value="@resroom.Workshop.Id" />
                                 <input type="hidden" name="Score" value="@resroom.Rating" />

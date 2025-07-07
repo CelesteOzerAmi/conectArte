@@ -97,21 +97,48 @@ namespace conectArte.Controllers
             List<WorkshopAssistant> previous = _context.Set<WorkshopAssistant>()
                 .Where(rr => rr.AssistantId == a.Id)
                 .ToList();
-            _context.Set<WorkshopAssistant>().RemoveRange(previous);
-            _context.SaveChanges();
 
             if (a.WorkshopIds != null)
             {
                 foreach (int id in a.WorkshopIds)
                 {
-                    WorkshopAssistant rr = new WorkshopAssistant { WorkshopId = id, AssistantId = a.Id};
-                    _context.Add(rr);
+                    WorkshopAssistant wk = previous.Find(wk => wk.WorkshopId == id);
+                    if (wk != null)
+                    {
+                        previous.Remove(wk);
+                    }
+                    else
+                    {
+                        WorkshopAssistant rr = new WorkshopAssistant { WorkshopId = id, AssistantId = a.Id};
+                        _context.Add(rr);
+                    }
                 }
-                _context.SaveChanges();
             }
+            _context.Set<WorkshopAssistant>().RemoveRange(previous);
+            _context.SaveChanges();
             return RedirectToAction("ListAssistant");
         }
 
+        public IActionResult AssignScore(int AssistantId, int WorkshopId)
+        {
+
+            ViewData["Workshop"] = _context.Workshops.Find(WorkshopId);
+            ViewData["Assistant"] = _context.Assistants.Find(AssistantId);
+            WorkshopAssistant wka = _context.Set<WorkshopAssistant>()
+                .FirstOrDefault(wk => wk.AssistantId == AssistantId && wk.WorkshopId == WorkshopId);
+            return View(wka);
+        }
+
+        [HttpPost]
+        public IActionResult AssignScore(int AssistantId, int WorkshopId, int Rating)
+        {
+            WorkshopAssistant wa = _context.Set<WorkshopAssistant>()
+                .FirstOrDefault(w => w.AssistantId == AssistantId && w.WorkshopId == WorkshopId);
+           wa.Rating = Rating;
+            _context.WorkshopAssistants.Update(wa);
+            _context.SaveChanges();
+            return RedirectToAction("AssistantDetails", new { id = wa.AssistantId });
+        }
 
         [HttpPost]
         public IActionResult DeleteAttendedWorkshop(int AssistantId, int WorkshopId)

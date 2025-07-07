@@ -21,6 +21,7 @@ namespace conectArte.Datos
         public DbSet<Resource> Resources { get; set; }
 
 		public DbSet<Room> Rooms { get; set; }
+        public DbSet<ResourceRoom> ResourceRooms { get; set; }
 
         public DbSet<Workshop> Workshops { get; set; }
         public DbSet<WorkshopAssistant> WorkshopAssistants { get; set; }
@@ -52,7 +53,7 @@ namespace conectArte.Datos
 
             modelBuilder.Entity<WorkshopAssistant>()
                 .HasOne(wa => wa.Assistant)
-                .WithMany()
+                .WithMany(w => w.WorkshopsAttended)
                 .HasForeignKey(wa => wa.AssistantId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

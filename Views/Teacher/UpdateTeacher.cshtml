@@ -19,7 +19,10 @@
             <label for="Specialty">Especialidad:</label>
             <input type="text" value="@Model.Specialty" asp-for="Specialty" class="form-control" id="specialty" name="specialty">
         </div>
-        <button type="submit" class="btn btn-primary">Modificar docente</button>
+        <a href="@Url.Action("ListTeacher", "Teacher")" class="btn btn-secondary text-white mt-2">Cancelar</a>
+
+        <button type="submit" class="btn btn-primary mt-2">Modificar docente</button>
+
     </form>
 
 </div>

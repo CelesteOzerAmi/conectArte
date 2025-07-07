@@ -110,7 +110,7 @@ namespace conectArte.Controllers
             {
                 foreach(int id in r.ResourcesIds)
                 {
-                    ResourceRoom rr = new ResourceRoom { ResourceId = id, RoomName = r.Name, ResourceCount = 1 };
+                    ResourceRoom rr = new ResourceRoom { ResourceId = id, RoomName = r.Name};
                     _context.Add(rr);
                 }
                 _context.SaveChanges();
@@ -131,22 +131,15 @@ namespace conectArte.Controllers
             return RedirectToAction("RoomDetails", new { name = roomName });
         }
 
-        public IActionResult UpdateAssignedResourceCount(string roomName, int id,  int count)
+        [HttpPost]
+        public IActionResult UpdateAssignedResourceCount(string roomName, int ResourceId, int ResourceCount)
         {
-            /***     errores     ***/ 
-            ResourceRoom resroom = _context.Set<ResourceRoom>()
-                        .FirstOrDefault(rr => rr.RoomName == roomName && rr.ResourceId == id);
-
-            resroom.ResourceCount = count;
-            Console.WriteLine("res: " + resroom);
-
-            _context.Set<ResourceRoom>().Update(resroom);
-            Console.WriteLine("res: " + resroom);
-
-
+            ResourceRoom rsm = _context.Set<ResourceRoom>()
+                 .FirstOrDefault(rr => rr.RoomName == roomName && rr.ResourceId == ResourceId);
+            rsm.ResourceCount = ResourceCount;
+            _context.ResourceRooms.Update(rsm);
             _context.SaveChanges();
-
-            return RedirectToAction("RoomDetails", new { name = roomName });
+            return RedirectToAction("RoomDetails", new { name = rsm.RoomName });
         }
     }
 }

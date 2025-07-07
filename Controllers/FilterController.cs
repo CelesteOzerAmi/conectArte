@@ -16,24 +16,31 @@ namespace conectArte.Controllers
             this._context = context;
         }
 
-        /*public IActionResult NoResourceWorkshopAssistants()
+        public IActionResult NoResourceWorkshopAssistants()
         {
-            List<Workshop> workshops = this._context.Workshops
-                .Where(w => !w.Room.ResourcesRooms.Any())
-                .ToList();
-            List<Assistant> assistants = this._context.Assistants
+            List<Workshop> workshops = _context.Workshops
+                .Where(w => w.Room.ResourcesRooms.Any())
                 .ToList();
 
-            foreach(Assistant assistant in assistants)
+            List<WorkshopAssistant> workasst = _context.WorkshopAssistants
+                .Include(aw => aw.Assistant)
+                .Include(w => w.Workshop)
+                .Where(w =>!workshops.Contains(w.Workshop))
+                .ToList();
+
+            List<Assistant> assistant = new List<Assistant>();
+
+            if (workasst.Count > 0)
             {
-                foreach(Workshop workshop in workshops)
-                { 
+                
+                foreach(WorkshopAssistant wa in workasst)
+                {
+                    assistant.Add(wa.Assistant);
                 }
             }
 
-            
-            return View();
-        }*/
+            return View(assistant);
+        }
 
 
         public IActionResult AssistantsForWorkshopAttendance()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using conectArte.Datos;
 
@@ -11,9 +12,11 @@ using conectArte.Datos;
 namespace conectArte.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250705003157_AssistantWorkshopAndRelation")]
+    partial class AssistantWorkshopAndRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,14 +140,14 @@ namespace conectArte.Migrations
                     b.Property<string>("RoomName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("ResourceCount")
+                    b.Property<int>("ResourceCount")
                         .HasColumnType("int");
 
                     b.HasKey("ResourceId", "RoomName");
 
                     b.HasIndex("RoomName");
 
-                    b.ToTable("ResourceRooms");
+                    b.ToTable("ResourceRoom");
                 });
 
             modelBuilder.Entity("conectArte.Models.Room", b =>
@@ -256,12 +259,17 @@ namespace conectArte.Migrations
                     b.Property<int>("AssistantId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("Rating")
+                    b.Property<int?>("AssistantId1")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Rating")
                         .HasColumnType("float");
 
                     b.HasKey("WorkshopId", "AssistantId");
 
                     b.HasIndex("AssistantId");
+
+                    b.HasIndex("AssistantId1");
 
                     b.ToTable("WorkshopAssistants");
                 });
@@ -340,10 +348,14 @@ namespace conectArte.Migrations
             modelBuilder.Entity("conectArte.Models.WorkshopAssistant", b =>
                 {
                     b.HasOne("conectArte.Models.Assistant", "Assistant")
-                        .WithMany("WorkshopsAttended")
+                        .WithMany()
                         .HasForeignKey("AssistantId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("conectArte.Models.Assistant", null)
+                        .WithMany("WorkshopsAttended")
+                        .HasForeignKey("AssistantId1");
 
                     b.HasOne("conectArte.Models.Workshop", "Workshop")
                         .WithMany("WorkshopAssistants")

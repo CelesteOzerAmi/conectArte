@@ -23,7 +23,7 @@ namespace conectArte.Controllers
         {
             _context.Coordinators.Add(c);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListCoordinator");
         }
 
         public IActionResult ListCoordinator()

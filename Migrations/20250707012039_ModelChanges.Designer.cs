@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using conectArte.Datos;
 
@@ -11,9 +12,11 @@ using conectArte.Datos;
 namespace conectArte.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250707012039_ModelChanges")]
+    partial class ModelChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,7 +140,7 @@ namespace conectArte.Migrations
                     b.Property<string>("RoomName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("ResourceCount")
+                    b.Property<int>("ResourceCount")
                         .HasColumnType("int");
 
                     b.HasKey("ResourceId", "RoomName");

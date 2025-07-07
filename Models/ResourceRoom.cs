@@ -14,7 +14,7 @@ namespace conectArte.Models
         [ForeignKey("RoomName")]
         public Room AssignedRoom { get; set; }
 
-        public int ResourceCount { get; set; }
+        public int? ResourceCount { get; set; }
 
         public ResourceRoom()
         {

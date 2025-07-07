@@ -11,7 +11,9 @@
             <label for="Stock">Cantidad disponible:</label>
             <input type="number" value="@Model.Stock" asp-for="Stock" class="form-control" id="stock" name="stock">
         </div>
-        <button type="submit" class="btn btn-primary">Modificar recurso</button>
+        <a href="@Url.Action("ListResource", "Resource")" class="btn btn-secondary text-white mt-2">Cancelar</a>
+
+        <button type="submit" class="btn btn-primary mt-2">Modificar recurso</button>
     </form>
 
 </div>

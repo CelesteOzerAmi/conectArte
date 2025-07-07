@@ -1,0 +1,21 @@
+@model WorkshopAssistant
+<h2>Asignar calificación final</h2>
+<form asp-action="AssignScore" method="post">
+    <input type="hidden" asp-for="WorkshopId" />
+    <input type="hidden" asp-for="AssistantId"/>
+    <div class="mb-3">
+        <label>Asistente</label>
+        <input asp-for="Assistant.FullName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Taller</label>
+        <input asp-for="Workshop.Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Calificación</label>
+        <input asp-for="Rating" class="form-control"/>
+    </div>
+    <a href="@Url.Action("ListAssistant", "Assistant")" class="btn btn-secondary text-white mt-2">Cancelar</a>
+
+    <button type="submit" class="btn btn-primary mt-2">Registrar calificación</button>
+</form> 
