@@ -10,7 +10,6 @@ namespace conectArte.Datos
 		{
 		}
 
-		public DbSet<Tarea> Tareas { get; set; }
 
 		public DbSet<Teacher> Teachers { get; set; }
 
