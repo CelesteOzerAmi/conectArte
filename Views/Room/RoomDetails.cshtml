@@ -25,14 +25,12 @@
                             <p class="w-25">
                                 @resroom.AssignedResource.Name 
                             </p>
-                            <div class="align-items-center">
+                            <form asp-action="UpdateAssignedResourceCount" method="post" class="m-0 d-flex gap-2">
                                 <label for="ResourceCount">Cantidad</label>
                                 <input class="w-25" type="number" name="ResourceCount" value="@resroom.ResourceCount" id="ResourceCountId" />
-                            </div>
-                            <form asp-action="UpdateAssignedResourceCount" method="post" class="m-0">
+                            
                                 <input type="hidden" name="roomName" value="@Model.Name" />
                                 <input type="hidden" name="ResourceId" value="@resroom.AssignedResource.Id" />
-                                <input type="hidden" asp-for="@resroom.ResourceCount" value=ResourceCountId />
                                 <button type="submit" class="btn btn-primary">Actualizar cantidad</button>
                             </form>
                             <form asp-action="DeleteAssignedResource" method="post" class="m-0">
